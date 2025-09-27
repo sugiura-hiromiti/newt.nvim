@@ -18,7 +18,7 @@ Use your favorite plugin manager. Examples:
 
 ```lua
 {
-  "awa/thaoe.nvim",
+  "sugiura-hiromiti/thaoe.nvim",
   config = function()
     require("thaoe").setup({
       style = "dark",
@@ -27,6 +27,7 @@ Use your favorite plugin manager. Examples:
   end,
 }
 ```
+
 </details>
 
 <details>
@@ -34,7 +35,7 @@ Use your favorite plugin manager. Examples:
 
 ```lua
 use({
-  "awa/thaoe.nvim",
+  "sugiura-hiromiti/thaoe.nvim",
   config = function()
     require("thaoe").setup({
       style = "dark",
@@ -43,6 +44,7 @@ use({
   end,
 })
 ```
+
 </details>
 
 After installation, enable the scheme:
@@ -58,12 +60,12 @@ vim.cmd.colorscheme("thaoe")
 
 `require("thaoe").setup()` accepts the following options:
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `style` | `"dark" \| "light"` | `"dark"` | Select the palette branch from `colors.json`. |
-| `transparent` | `boolean` | `false` | Remove most background fills while preserving contrasts for popups and selections. |
-| `terminal` | `boolean` | `true` | Apply the palette to `terminal_color_0..15`. |
-| `overrides` | `table \| fun(groups, palette): table?` | `nil` | Adjust or replace highlight groups after generation. Return a table to fully replace the computed groups. |
+| Option        | Type                                    | Default  | Description                                                                                               |
+| ------------- | --------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| `style`       | `"dark" \| "light"`                     | `"dark"` | Select the palette branch from `colors.json`.                                                             |
+| `transparent` | `boolean`                               | `false`  | Remove most background fills while preserving contrasts for popups and selections.                        |
+| `terminal`    | `boolean`                               | `true`   | Apply the palette to `terminal_color_0..15`.                                                              |
+| `overrides`   | `table \| fun(groups, palette): table?` | `nil`    | Adjust or replace highlight groups after generation. Return a table to fully replace the computed groups. |
 
 ### Overrides example
 
