@@ -10,10 +10,10 @@ local palette_cache
 local function read_file(path)
   local ok, lines = pcall(vim.fn.readfile, path)
   if not ok then
-    error("thaoe.nvim: unable to read colors.json: " .. lines)
+    error("newt.nvim: unable to read colors.json: " .. lines)
   end
   if not lines or vim.tbl_isempty(lines) then
-    error("thaoe.nvim: colors.json is empty")
+    error("newt.nvim: colors.json is empty")
   end
   return table.concat(lines, "\n")
 end
@@ -25,7 +25,7 @@ local function decode_palette()
 
   local path = vim.api.nvim_get_runtime_file("colors.json", false)[1]
   if not path then
-    error("thaoe.nvim: colors.json not found in runtime path")
+    error("newt.nvim: colors.json not found in runtime path")
   end
 
   local raw = read_file(path)
@@ -37,7 +37,7 @@ local function decode_palette()
   end)
 
   if not ok then
-    error("thaoe.nvim: colors.json could not be decoded: " .. decoded)
+    error("newt.nvim: colors.json could not be decoded: " .. decoded)
   end
 
   palette_cache = decoded
@@ -90,12 +90,12 @@ local function build_palette(opts)
 
   local shades = data[background]
   if not shades then
-    error("thaoe.nvim: missing palette for background " .. background)
+    error("newt.nvim: missing palette for background " .. background)
   end
 
   local active = shades[style]
   if not active then
-    error("thaoe.nvim: missing palette for style " .. style)
+    error("newt.nvim: missing palette for style " .. style)
   end
   local companion = shades[style == "bright" and "normal" or "bright"]
 
@@ -475,7 +475,7 @@ function M.load(opts)
     vim.cmd("syntax reset")
   end
 
-  vim.g.colors_name = "thaoe"
+  vim.g.colors_name = "newt"
 
   local groups = highlight_groups(palette)
   for name, spec in pairs(treesitter_groups(palette)) do
