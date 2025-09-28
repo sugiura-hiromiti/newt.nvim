@@ -12,13 +12,13 @@ local function report(msg)
   end
 end
 
-local ok, thaoe = pcall(require, "thaoe")
+local ok, newt = pcall(require, "newt")
 if not ok then
-  report("thaoe.nvim: unable to load core module")
+  report("newt.nvim: unable to load core module")
   return
 end
 
-local ok_load, err = pcall(thaoe.load)
+local ok_load, err = pcall(newt.load)
 if not ok_load then
-  report("thaoe.nvim: failed to load colorscheme — " .. tostring(err))
+  report("newt.nvim: failed to load colorscheme — " .. tostring(err))
 end
