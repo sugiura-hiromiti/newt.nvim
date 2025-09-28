@@ -9,7 +9,7 @@ Modern dual-mode Neovim colorscheme that adapts to `vim.o.background` and lets y
 - Rich dark and light themes tuned from a single palette source of truth.
 - Style switcher (`normal` or `bright`) for higher-contrast sessions.
 - Extensive highlight coverage: LSP, diagnostics, Telescope, Treesitter, Git signs, and popular UI plugins.
-- Helper API (`require('thaoe').build_palette`) for plugin authors who want direct access to the computed colors.
+- Helper API (`require('thaoe').build_palette`) for plugin authors who want direct access to the computed colors. (see [documentation](./doc/thaoe.nvim.txt) for more detail)
 
 ## Installation
 
