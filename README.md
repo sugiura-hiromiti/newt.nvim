@@ -21,7 +21,7 @@ Use your favorite plugin manager. Examples:
   "sugiura-hiromiti/thaoe.nvim",
   config = function()
     require("thaoe").setup({
-      style = "dark",
+      theme = "dark",
     })
     vim.cmd.colorscheme("thaoe")
   end,
@@ -38,7 +38,7 @@ use({
   "sugiura-hiromiti/thaoe.nvim",
   config = function()
     require("thaoe").setup({
-      style = "dark",
+      theme = "dark",
     })
     vim.cmd.colorscheme("thaoe")
   end,
@@ -51,7 +51,7 @@ After installation, enable the scheme:
 
 ```lua
 require("thaoe").setup({
-  style = "dark", -- or "light"
+  theme = "dark", -- or "light"
 })
 vim.cmd.colorscheme("thaoe")
 ```
@@ -60,12 +60,28 @@ vim.cmd.colorscheme("thaoe")
 
 `require("thaoe").setup()` accepts the following options:
 
-| Option        | Type                                    | Default  | Description                                                                                               |
-| ------------- | --------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------- |
-| `style`       | `"dark" \| "light"`                     | `"dark"` | Select the palette branch from `colors.json`.                                                             |
-| `transparent` | `boolean`                               | `false`  | Remove most background fills while preserving contrasts for popups and selections.                        |
-| `terminal`    | `boolean`                               | `true`   | Apply the palette to `terminal_color_0..15`.                                                              |
-| `overrides`   | `table \| fun(groups, palette): table?` | `nil`    | Adjust or replace highlight groups after generation. Return a table to fully replace the computed groups. |
+| Option        | Type                                    | Default    | Description                                                                                               |
+| ------------- | --------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
+| `theme`       | `"dark" \| "light"`                     | `"dark"`   | Select the palette branch from `colors.json`.                                                             |
+| `style`       | `"normal" \| "bright"` (per theme)      | `"normal"` | Pick the style variant within the selected theme. Use `available_styles()` to list the valid values.       |
+| `transparent` | `boolean`                               | `false`    | Remove most background fills while preserving contrasts for popups and selections.                        |
+| `terminal`    | `boolean`                               | `true`     | Apply the palette to `terminal_color_0..15`.                                                              |
+| `overrides`   | `table \| fun(groups, palette): table?` | `nil`      | Adjust or replace highlight groups after generation. Return a table to fully replace the computed groups. |
+
+To switch to the brighter variant shipped in `colors.json`:
+
+```lua
+require("thaoe").setup({
+  theme = "dark",
+  style = "bright",
+})
+```
+
+Discover the available styles for a theme at runtime:
+
+```lua
+print(vim.inspect(require("thaoe").available_styles("light")))
+```
 
 ### Overrides example
 
@@ -91,10 +107,10 @@ require("thaoe").setup({
 })
 ```
 
-### Discover available styles
+### Discover available themes
 
 ```lua
-print(vim.inspect(require("thaoe").available_styles()))
+print(vim.inspect(require("thaoe").available_themes()))
 ```
 
 ## Custom palette
