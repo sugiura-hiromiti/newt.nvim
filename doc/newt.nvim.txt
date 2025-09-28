@@ -1,33 +1,33 @@
-*thaoe.nvim.txt*  thaoe.nvim - dual-mode colorscheme for Neovim
+*newt.nvim.txt*  newt.nvim - dual-mode colorscheme for Neovim
 
 ==============================================================================
-CONTENTS                                                    *thaoe.nvim-contents*
-    1. Introduction...........................|thaoe.nvim-intro|
-    2. Installation...........................|thaoe.nvim-install|
-    3. Usage..................................|thaoe.nvim-usage|
-    4. Options................................|thaoe.nvim-options|
-    5. Lua API................................|thaoe.nvim-api|
-    6. Palette Data...........................|thaoe.nvim-palette|
-    7. Troubleshooting........................|thaoe.nvim-troubleshooting|
+CONTENTS                                                    *newt.nvim-contents*
+    1. Introduction...........................|newt.nvim-intro|
+    2. Installation...........................|newt.nvim-install|
+    3. Usage..................................|newt.nvim-usage|
+    4. Options................................|newt.nvim-options|
+    5. Lua API................................|newt.nvim-api|
+    6. Palette Data...........................|newt.nvim-palette|
+    7. Troubleshooting........................|newt.nvim-troubleshooting|
 
 ==============================================================================
-INTRODUCTION                                                *thaoe.nvim-intro*
+INTRODUCTION                                                *newt.nvim-intro*
 
-thaoe.nvim is a modern colorscheme that keeps dark and light variants in sync
+newt.nvim is a modern colorscheme that keeps dark and light variants in sync
 while offering two contrast styles (`normal` and `bright`). The palette is
 derived from a single `colors.json`, and highlight groups span core Neovim UI,
 Treesitter, LSP, diagnostics, Telescope, Git integrations, and other common
 plugins.
 
 ==============================================================================
-INSTALLATION                                              *thaoe.nvim-install*
+INSTALLATION                                              *newt.nvim-install*
 
 Use your favorite plugin manager. Example for |lazy.nvim|:
 >
     {
-      "sugiura-hiromiti/thaoe.nvim",
+      "sugiura-hiromiti/newt.nvim",
       config = function()
-        require("thaoe").setup()
+        require("newt").setup()
       end,
     }
 <
@@ -37,19 +37,19 @@ After installing, generate helptags so this file is discoverable:
 <
 
 ==============================================================================
-USAGE                                                       *thaoe.nvim-usage*
+USAGE                                                       *newt.nvim-usage*
 
-1. Call `require("thaoe").setup()` once during startup, optionally passing
+1. Call `require("newt").setup()` once during startup, optionally passing
    options described below.
-2. Apply the scheme with `vim.cmd.colorscheme("thaoe")` or
-   `:colorscheme thaoe`.
+2. Apply the scheme with `vim.cmd.colorscheme("newt")` or
+   `:colorscheme newt`.
 
 Runtime tweaks ~
     - Force a specific background: >
-        require("thaoe").load({ background = "light" })
+        require("newt").load({ background = "light" })
 <
     - Switch contrast styles on the fly: >
-        require("thaoe").load({ style = "bright" })
+        require("newt").load({ style = "bright" })
 <
     - Let Neovim toggle automatically: set |'background'| to `dark` or `light`
       and keep `style` at its default.
@@ -58,10 +58,10 @@ Runtime tweaks ~
 applied, so you can inspect or reuse it in your own plugins.
 
 ==============================================================================
-OPTIONS                                                   *thaoe.nvim-options*
+OPTIONS                                                   *newt.nvim-options*
 
-Options are passed to `require("thaoe").setup(opts)` and may also be supplied
-to `require("thaoe").load(opts)` to override them temporarily.
+Options are passed to `require("newt").setup(opts)` and may also be supplied
+to `require("newt").load(opts)` to override them temporarily.
 
 `background`  (`"dark"` or `"light"`, default: follows |'background'|)
         Forces a specific background variant regardless of Neovim's setting.
@@ -71,30 +71,30 @@ to `require("thaoe").load(opts)` to override them temporarily.
         punchier look, while `"normal"` stays closer to the base palette.
 
 ==============================================================================
-LUA API                                                       *thaoe.nvim-api*
+LUA API                                                       *newt.nvim-api*
 
-`thaoe.setup(opts)`                                       *thaoe.setup()*
+`newt.setup(opts)`                                       *newt.setup()*
         Stores user preferences. Call this once early in your config. All
         fields are optional; unspecified values fall back to global defaults.
 
-`thaoe.load(opts)`                                         *thaoe.load()*
+`newt.load(opts)`                                         *newt.load()*
         Computes the palette, applies every highlight group, sets
         |'termguicolors'|, aligns |'background'|, and returns the palette table.
         Passing `opts` lets you temporarily override `background` and `style`
         without mutating the stored config.
 
-`thaoe.build_palette(opts)`                         *thaoe.build_palette()*
+`newt.build_palette(opts)`                         *newt.build_palette()*
         Returns the palette table without changing highlights. Useful when you
         only need colors for your own components. When `opts` are omitted the
         stored configuration (merged with Neovim defaults) is used.
 
-`thaoe.blend(foreground, background, alpha)`           *thaoe.blend()*
+`newt.blend(foreground, background, alpha)`           *newt.blend()*
         Helper for mixing two hex colors. `alpha` is clamped between 0 and 1.
         The result is an uppercase `#RRGGBB` string suitable for highlight
         definitions.
 
 ==============================================================================
-PALETTE DATA                                             *thaoe.nvim-palette*
+PALETTE DATA                                             *newt.nvim-palette*
 
 The palette returned by `build_palette()` and `load()` includes:
 
@@ -112,14 +112,14 @@ The exact values come from `colors.json`. You can fork the palette by editing
 that file and reloading the colorscheme.
 
 ==============================================================================
-TROUBLESHOOTING                                  *thaoe.nvim-troubleshooting*
+TROUBLESHOOTING                                  *newt.nvim-troubleshooting*
 
-`thaoe.nvim: colors.json not found in runtime path`
+`newt.nvim: colors.json not found in runtime path`
         Ensure the plugin is properly installed and `colors.json` lives in the
         same runtime directory as this plugin. Running `:echo stdpath("data")`
         helps confirm the package location.
 
-`thaoe.nvim: colors.json could not be decoded`
+`newt.nvim: colors.json could not be decoded`
         The palette file must be valid JSON. Revert to the version shipped with
         the plugin or validate your edits with an external json parser.
 

@@ -1,15 +1,16 @@
 ***this plugin is alpha stage of development.***
 
-# thaoe.nvim
+# newt.nvim
 
 Modern dual-mode Neovim colorscheme that adapts to `vim.o.background` and lets you pick between *normal* and *bright* palettes derived from the bundled `colors.json`.
+`newt` stand for *new terminal* theme for Terminal.app introduced from macOS 26
 
 ## Highlights
 
 - Rich dark and light themes tuned from a single palette source of truth.
 - Style switcher (`normal` or `bright`) for higher-contrast sessions.
 - Extensive highlight coverage: LSP, diagnostics, Telescope, Treesitter, Git signs, and popular UI plugins.
-- Helper API (`require('thaoe').build_palette`) for plugin authors who want direct access to the computed colors. (see [documentation](./doc/thaoe.nvim.txt) for more detail)
+- Helper API (`require('newt').build_palette`) for plugin authors who want direct access to the computed colors. (see [documentation](./doc/newt.nvim.txt) for more detail)
 
 ## Installation
 
@@ -17,9 +18,9 @@ Use your preferred plugin manager. Example for [lazy.nvim](https://github.com/fo
 
 ```lua
 {
-  "sugiura-hiromiti/thaoe.nvim",
+  "sugiura-hiromiti/newt.nvim",
   config = function()
-    require("thaoe").setup()
+    require("newt").setup()
   end,
 }
 ```
@@ -29,8 +30,8 @@ Use your preferred plugin manager. Example for [lazy.nvim](https://github.com/fo
 Load the colorscheme after setup:
 
 ```lua
-require("thaoe").setup()
-vim.cmd.colorscheme("thaoe")
+require("newt").setup()
+vim.cmd.colorscheme("newt")
 ```
 
 ### Configuration
@@ -45,11 +46,11 @@ vim.cmd.colorscheme("thaoe")
 Example forcing the light bright variant:
 
 ```lua
-require("thaoe").setup {
+require("newt").setup {
   background = "light",
   style = "bright",
 }
-vim.cmd.colorscheme("thaoe")
+vim.cmd.colorscheme("newt")
 ```
 
 ## License
