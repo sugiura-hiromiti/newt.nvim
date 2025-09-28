@@ -31,6 +31,7 @@ local function build_groups(palette, opts)
   local bg_highlight = mix_for_ui(palette, bg, is_dark and 0.1 or 0.08)
   local bg_selection = util.blend(bright.blue or fg, bg, is_dark and 0.25 or 0.15)
   local bg_float = opts.transparent and nil or mix_for_ui(palette, bg, is_dark and 0.05 or 0.04)
+  local virtual_text_bg_alpha = is_dark and 0.1 or 0.08
   local accent_orange = accent_mix(bright.red or fg, bright.yellow or fg)
   local parameter_fg = util.blend(fg, bg, is_dark and 0.6 or 0.35)
   local property_fg = util.blend(fg, bg, is_dark and 0.65 or 0.4)
@@ -89,19 +90,19 @@ local function build_groups(palette, opts)
     DiagnosticOk = { fg = bright.green or fg },
     DiagnosticVirtualTextError = {
       fg = util.blend(bright.red or fg, bg, 0.6),
-      bg = util.blend(bright.red or fg, bg, is_dark and 0.1 or 0.18),
+      bg = util.blend(bright.red or fg, bg, virtual_text_bg_alpha),
     },
     DiagnosticVirtualTextWarn = {
       fg = util.blend(bright.yellow or fg, bg, 0.6),
-      bg = util.blend(bright.yellow or fg, bg, is_dark and 0.1 or 0.18),
+      bg = util.blend(bright.yellow or fg, bg, virtual_text_bg_alpha),
     },
     DiagnosticVirtualTextInfo = {
       fg = util.blend(bright.blue or fg, bg, 0.6),
-      bg = util.blend(bright.blue or fg, bg, is_dark and 0.1 or 0.18),
+      bg = util.blend(bright.blue or fg, bg, virtual_text_bg_alpha),
     },
     DiagnosticVirtualTextHint = {
       fg = util.blend(bright.cyan or fg, bg, 0.6),
-      bg = util.blend(bright.cyan or fg, bg, is_dark and 0.1 or 0.18),
+      bg = util.blend(bright.cyan or fg, bg, virtual_text_bg_alpha),
     },
     DiagnosticUnderlineError = { undercurl = true, sp = bright.red or fg },
     DiagnosticUnderlineWarn = { undercurl = true, sp = bright.yellow or fg },
