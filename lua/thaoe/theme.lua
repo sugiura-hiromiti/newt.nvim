@@ -3,8 +3,8 @@ local util = require("thaoe.util")
 local M = {}
 
 local function mix_for_ui(palette, base, factor)
-  local style = palette.style or "dark"
-  if style == "light" then
+  local theme_name = palette.theme or "dark"
+  if theme_name == "light" then
     return util.blend(palette.normal.black, base, factor)
   end
   return util.blend(palette.normal.white, base, factor)
@@ -19,8 +19,8 @@ local function build_groups(palette, opts)
 
   local normal = palette.normal or {}
   local bright = palette.bright or {}
-  local style = palette.style or "dark"
-  local is_dark = style ~= "light"
+  local theme_name = palette.theme or "dark"
+  local is_dark = theme_name ~= "light"
 
   local bg = normal.black or (is_dark and "#1f2327" or "#ffffff")
   local fg = normal.white or (is_dark and "#dcdfe4" or "#202326")
