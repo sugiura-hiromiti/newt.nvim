@@ -35,7 +35,12 @@ local function build_groups(palette, opts)
   local accent_orange = accent_mix(bright.red or fg, bright.yellow or fg)
   local parameter_fg = util.blend(fg, bg, is_dark and 0.6 or 0.35)
   local property_fg = util.blend(fg, bg, is_dark and 0.65 or 0.4)
-  local variable_fg = util.blend(fg, bg, is_dark and 0.75 or 0.45)
+  local variable_base = fg
+  if not is_dark then
+    variable_base = bright.blue or bright.magenta or bright.cyan or fg
+  end
+  local variable_alpha = is_dark and 0.75 or 0.65
+  local variable_fg = util.blend(variable_base, bg, variable_alpha)
 
   local transparent = opts.transparent
 
