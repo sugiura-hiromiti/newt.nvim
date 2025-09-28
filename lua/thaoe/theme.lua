@@ -17,15 +17,30 @@ end
 local function build_groups(palette, opts)
 	opts = opts or {}
 
-	local normal = palette.normal or {}
-	local bright = palette.bright or {}
+	local normal = palette.normal or nil
+	local bright = palette.bright or nil
 	local theme_name = palette.theme or 'dark'
 	local is_dark = theme_name ~= 'light'
 
 	-- local bg = normal.black or (is_dark and "#1f2327" or "#ffffff")
 	-- local fg = normal.white or (is_dark and "#dcdfe4" or "#202326")
-	local bg = is_dark and (normal and normal.black or bright.black) or (normal and normal.white or bright.white)
-	local fg = is_dark and (normal and normal.white or bright.white) or (normal and normal.black or bright.black)
+	local bg
+	local fg
+
+	if is_dark then
+		if normal == nil then
+			bg = bright.black
+		else
+			bg = normal.black
+		end
+	else
+		if normal == nil then
+			bg = bright.white
+		else
+			bg = normal.white
+		end
+	end
+
 	local dim_fg = util.blend(fg, bg, is_dark and 0.8 or 0.2)
 	local muted = util.blend(fg, bg, is_dark and 0.6 or 0.35)
 	local subtle = util.blend(fg, bg, is_dark and 0.75 or 0.5)
