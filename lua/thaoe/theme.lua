@@ -32,6 +32,9 @@ local function build_groups(palette, opts)
   local bg_selection = util.blend(bright.blue or fg, bg, is_dark and 0.25 or 0.15)
   local bg_float = opts.transparent and nil or mix_for_ui(palette, bg, is_dark and 0.05 or 0.04)
   local accent_orange = accent_mix(bright.red or fg, bright.yellow or fg)
+  local parameter_fg = util.blend(fg, bg, is_dark and 0.6 or 0.35)
+  local property_fg = util.blend(fg, bg, is_dark and 0.65 or 0.4)
+  local variable_fg = util.blend(fg, bg, is_dark and 0.75 or 0.45)
 
   local transparent = opts.transparent
 
@@ -220,22 +223,22 @@ local function build_groups(palette, opts)
   groups["@tag.delimiter"] = { fg = subtle }
   groups["@module"] = { fg = bright.blue or fg }
   groups["@module.builtin"] = { fg = bright.blue or fg, italic = true }
-  groups["@parameter"] = { fg = util.blend(fg, bg, is_dark and 0.25 or 0.3) }
-  groups["@parameter.reference"] = { fg = util.blend(fg, bg, is_dark and 0.25 or 0.3) }
+  groups["@parameter"] = { fg = parameter_fg }
+  groups["@parameter.reference"] = { fg = parameter_fg }
   groups["@method"] = { link = "Function" }
   groups["@method.call"] = { link = "Function" }
   groups["@constructor"] = { fg = bright.green or fg }
-  groups["@field"] = { fg = util.blend(fg, bg, is_dark and 0.3 or 0.25) }
-  groups["@property"] = { fg = util.blend(fg, bg, is_dark and 0.3 or 0.25) }
-  groups["@variable"] = { fg = util.blend(fg, bg, is_dark and 0.1 or 0.2) }
+  groups["@field"] = { fg = property_fg }
+  groups["@property"] = { fg = property_fg }
+  groups["@variable"] = { fg = variable_fg }
   groups["@variable.builtin"] = { fg = bright.yellow or fg, italic = true }
-  groups["@variable.parameter"] = { fg = util.blend(fg, bg, is_dark and 0.25 or 0.3) }
+  groups["@variable.parameter"] = { fg = parameter_fg }
   groups["@type"] = { link = "Type" }
   groups["@type.builtin"] = { fg = bright.cyan or fg, italic = true }
   groups["@type.definition"] = { link = "Type" }
   groups["@type.qualifier"] = { link = "Keyword" }
   groups["@attribute"] = { fg = bright.yellow or fg }
-  groups["@property.yaml"] = { fg = util.blend(fg, bg, is_dark and 0.25 or 0.3) }
+  groups["@property.yaml"] = { fg = property_fg }
   groups["@namespace"] = { fg = bright.blue or fg }
   groups["@symbol"] = { fg = bright.yellow or fg }
   groups["@text"] = { fg = fg }
