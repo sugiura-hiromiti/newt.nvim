@@ -52,11 +52,6 @@ require("thaoe").setup {
 vim.cmd.colorscheme("thaoe")
 ```
 
-## Troubleshooting
-
-- `colors.json not found`: ensure the plugin directory (with `colors.json`) is on your runtime path.
-- If `:colorscheme thaoe` emits an error, the loader prints a descriptive message via `vim.notify` (or `print` when unavailable).
-
 ## License
 
 MIT
