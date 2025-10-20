@@ -70,6 +70,11 @@ to `require("newt").load(opts)` to override them temporarily.
         Selects the accent intensity used for highlights. `"bright"` gives a
         punchier look, while `"normal"` stays closer to the base palette.
 
+`transparent` (`boolean`, default: `false`)
+        When `true`, leaves core window highlights such as `Normal` and
+        `NormalNC` without a background color so terminal transparency can show
+        through. Floats and popups keep their styled backgrounds.
+
 ==============================================================================
 LUA API                                                       *newt.nvim-api*
 

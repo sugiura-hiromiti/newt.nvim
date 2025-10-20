@@ -3,6 +3,7 @@ local M = {}
 local config = {
   background = nil,
   style = "normal",
+  transparent = false,
 }
 
 local palette_cache
@@ -87,6 +88,7 @@ local function build_palette(opts)
   local data = decode_palette()
   local background = opts.background == "light" and "light" or "dark"
   local style = opts.style == "bright" and "bright" or "normal"
+  local transparent = opts.transparent and true or false
 
   local shades = data[background]
   if not shades then
@@ -126,6 +128,7 @@ local function build_palette(opts)
   return {
     background = background,
     accent = active,
+    transparent = transparent,
     companion = companion,
     base = { fg = base_fg, bg = base_bg },
     text = {
@@ -179,9 +182,16 @@ local function get_effective_opts(opts)
     style = "normal"
   end
 
+  local transparent = config.transparent
+  if opts and opts.transparent ~= nil then
+    transparent = opts.transparent
+  end
+  transparent = transparent == true
+
   return {
     background = background,
     style = style,
+    transparent = transparent,
   }
 end
 
@@ -192,6 +202,7 @@ local function highlight_groups(p)
   local ui = p.ui
   local states = p.states
   local diag = p.diagnostic
+  local base_bg = p.transparent and "NONE" or p.base.bg
 
   local float_border = blend(accent.blue, ui.float, 0.6)
   local shadow = blend(companion.black, p.base.bg, p.background == "light" and 0.22 or 0.78)
@@ -200,18 +211,18 @@ local function highlight_groups(p)
   local virtual_bg = blend(ui.cursorline, p.base.bg, 0.65)
 
   return {
-    Normal = { fg = text.normal, bg = p.base.bg },
-    NormalNC = { fg = text.normal, bg = p.base.bg },
-    EndOfBuffer = { fg = ui.gutter, bg = p.base.bg },
+    Normal = { fg = text.normal, bg = base_bg },
+    NormalNC = { fg = text.normal, bg = base_bg },
+    EndOfBuffer = { fg = ui.gutter, bg = base_bg },
     Conceal = { fg = text.subtle },
     Cursor = { fg = p.base.bg, bg = text.normal },
     TermCursor = { fg = p.base.bg, bg = text.normal },
     CursorColumn = { bg = ui.cursorline },
     CursorLine = { bg = ui.cursorline },
     CursorLineNr = { fg = accent.yellow, bg = ui.cursorline, bold = true },
-    LineNr = { fg = ui.gutter, bg = p.base.bg },
-    SignColumn = { fg = ui.gutter, bg = p.base.bg },
-    FoldColumn = { fg = ui.gutter, bg = p.base.bg },
+    LineNr = { fg = ui.gutter, bg = base_bg },
+    SignColumn = { fg = ui.gutter, bg = base_bg },
+    FoldColumn = { fg = ui.gutter, bg = base_bg },
     Folded = { fg = text.subtle, bg = blend(ui.cursorline, p.base.bg, 0.6) },
     NonText = { fg = shadow },
     ColorColumn = { bg = ui.cursorline },
@@ -235,10 +246,10 @@ local function highlight_groups(p)
 
     StatusLine = { fg = text.normal, bg = ui.statusline },
     StatusLineNC = { fg = text.subtle, bg = ui.statusline },
-    WinSeparator = { fg = ui.border, bg = p.base.bg },
+    WinSeparator = { fg = ui.border, bg = base_bg },
     VertSplit = { fg = ui.border },
     TabLine = { fg = text.subtle, bg = ui.tabline },
-    TabLineSel = { fg = accent.blue, bg = p.base.bg, bold = true },
+    TabLineSel = { fg = accent.blue, bg = base_bg, bold = true },
     TabLineFill = { fg = text.subtle, bg = ui.tabline },
 
     Title = { fg = accent.blue, bold = true },
@@ -310,8 +321,8 @@ local function highlight_groups(p)
 
     Error = { fg = diag.error, bg = blend(diag.error, p.base.bg, 0.15) },
     WarningMsg = { fg = diag.warn },
-    MsgArea = { fg = text.normal, bg = p.base.bg },
-    MsgSeparator = { fg = ui.border, bg = p.base.bg },
+    MsgArea = { fg = text.normal, bg = base_bg },
+    MsgSeparator = { fg = ui.border, bg = base_bg },
     ModeMsg = { fg = accent.green, bold = true },
     MoreMsg = { fg = accent.green },
     Question = { fg = accent.green },
@@ -460,6 +471,9 @@ function M.setup(opts)
   end
   if opts.style ~= nil then
     config.style = opts.style
+  end
+  if opts.transparent ~= nil then
+    config.transparent = opts.transparent
   end
 end
 

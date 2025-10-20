@@ -42,6 +42,7 @@ vim.cmd.colorscheme("newt")
 | ------------ | ---------------------------- | -------------------------- | ------------------------------------------------------- |
 | `background` | `"dark"` &#124; `"light"`    | follows `vim.o.background` | Forces a specific background variant.                   |
 | `style`      | `"normal"` &#124; `"bright"` | `"normal"`                 | Chooses the accent intensity used throughout the theme. |
+| `transparent`| `boolean`                    | `false`                    | Leaves base window backgrounds unset (useful with terminal transparency). |
 
 Example forcing the light bright variant:
 
