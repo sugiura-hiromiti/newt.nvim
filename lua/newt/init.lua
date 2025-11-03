@@ -208,7 +208,15 @@ local function highlight_groups(p)
   local shadow = blend(companion.black, p.base.bg, p.background == "light" and 0.22 or 0.78)
   local menu_border = blend(ui.border, ui.menu, 0.6)
   local prompt_border = blend(ui.prompt, ui.menu, 0.55)
-  local virtual_bg = blend(ui.cursorline, p.base.bg, 0.65)
+  local virtual_bg = blend(ui.cursorline, p.base.bg, p.background == "light" and 0.45 or 0.55)
+  local inlay_hint_fg = blend(text.muted, text.normal, p.background == "light" and 0.55 or 0.35)
+  local diagnostic_virtual_bg_mix = p.background == "light" and 0.22 or 0.32
+  local function diagnostic_virtual(color)
+    return {
+      fg = color,
+      bg = blend(color, p.base.bg, diagnostic_virtual_bg_mix),
+    }
+  end
 
   return {
     Normal = { fg = text.normal, bg = base_bg },
@@ -308,16 +316,16 @@ local function highlight_groups(p)
     DiagnosticUnderlineWarn = { undercurl = true, sp = diag.warn },
     DiagnosticUnderlineInfo = { undercurl = true, sp = diag.info },
     DiagnosticUnderlineHint = { undercurl = true, sp = diag.hint },
-    DiagnosticVirtualTextError = { fg = blend(diag.error, text.normal, 0.6), bg = blend(diag.error, p.base.bg, 0.12) },
-    DiagnosticVirtualTextWarn = { fg = blend(diag.warn, text.normal, 0.6), bg = blend(diag.warn, p.base.bg, 0.12) },
-    DiagnosticVirtualTextInfo = { fg = blend(diag.info, text.normal, 0.6), bg = blend(diag.info, p.base.bg, 0.12) },
-    DiagnosticVirtualTextHint = { fg = blend(diag.hint, text.normal, 0.6), bg = blend(diag.hint, p.base.bg, 0.12) },
+    DiagnosticVirtualTextError = diagnostic_virtual(diag.error),
+    DiagnosticVirtualTextWarn = diagnostic_virtual(diag.warn),
+    DiagnosticVirtualTextInfo = diagnostic_virtual(diag.info),
+    DiagnosticVirtualTextHint = diagnostic_virtual(diag.hint),
 
     LspReferenceText = { bg = states.match },
     LspReferenceRead = { bg = states.match },
     LspReferenceWrite = { bg = states.match },
     LspSignatureActiveParameter = { fg = accent.yellow, bg = states.match },
-    LspInlayHint = { fg = text.muted, bg = virtual_bg, italic = true },
+    LspInlayHint = { fg = inlay_hint_fg, bg = virtual_bg, italic = true },
 
     Error = { fg = diag.error, bg = blend(diag.error, p.base.bg, 0.15) },
     WarningMsg = { fg = diag.warn },
