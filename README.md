@@ -54,6 +54,16 @@ require("newt").setup {
 vim.cmd.colorscheme("newt")
 ```
 
+## Terminal themes
+
+Matching terminal palettes are included for Ghostty (`ghostty/`) and Alacritty (`alacritty/`). Each terminal has dark/light backgrounds and the normal/bright styles. For Alacritty 0.13+ TOML configs, import one of the `.toml` files:
+
+```toml
+import = ["~/.config/alacritty/themes/newt-dark-normal.toml"]
+```
+
+Adjust the path and variant to keep your terminal aligned with the Neovim colorscheme.
+
 ## License
 
 MIT

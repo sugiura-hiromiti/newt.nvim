@@ -1,0 +1,32 @@
+# Newt dark normal theme for Alacritty
+[colors.primary]
+background = "0x2f3a42"
+foreground = "0xd9e2e8"
+
+[colors.cursor]
+text = "0x2f3a42"
+cursor = "0x70c4c7"
+
+[colors.selection]
+text = "0xd9e2e8"
+background = "0x4e6b81"
+
+[colors.normal]
+black = "0x2f3a42"
+red = "0xab4c3f"
+green = "0x61a065"
+yellow = "0xbca257"
+blue = "0x628bab"
+magenta = "0xb570c6"
+cyan = "0x70c4c7"
+white = "0xd9e2e8"
+
+[colors.bright]
+black = "0x3e5262"
+red = "0xdb6150"
+green = "0x6eb572"
+yellow = "0xe1c167"
+blue = "0x5cacea"
+magenta = "0xcd7ee1"
+cyan = "0x79d8dc"
+white = "0xe2ecf4"
