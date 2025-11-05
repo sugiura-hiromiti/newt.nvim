@@ -208,13 +208,15 @@ local function highlight_groups(p)
 	local shadow = blend(companion.black, p.base.bg, p.background == 'light' and 0.22 or 0.78)
 	local menu_border = blend(ui.border, ui.menu, 0.6)
 	local prompt_border = blend(ui.prompt, ui.menu, 0.55)
-	local virtual_bg = blend(ui.cursorline, p.base.bg, p.background == 'light' and 0.45 or 0.55)
-	local inlay_hint_fg = blend(text.muted, text.normal, p.background == 'light' and 0.55 or 0.35)
-	local diagnostic_virtual_bg_mix = p.background == 'light' and 0.22 or 0.32
+	local virtual_bg = blend(ui.cursorline, p.base.bg, p.background == 'light' and 0.3 or 0.7)
+	local inlay_hint_fg = blend(text.subtle, text.normal, p.background == 'light' and 0.35 or 0.2)
+	local diagnostic_virtual_fg_mix = p.background == 'light' and 0.4 or 0.2
+	local diagnostic_virtual_bg_mix = p.background == 'light' and 0.2 or 0.35
 	local function diagnostic_virtual(color)
+		local fg = blend(color, text.subtle, diagnostic_virtual_fg_mix)
 		return {
-			fg = color,
-			bg = blend(color, p.base.bg, diagnostic_virtual_bg_mix),
+			fg = fg,
+			bg = blend(color, virtual_bg, diagnostic_virtual_bg_mix),
 		}
 	end
 
