@@ -209,7 +209,7 @@ local function highlight_groups(p)
 	local menu_border = blend(ui.border, ui.menu, 0.6)
 	local prompt_border = blend(ui.prompt, ui.menu, 0.55)
 	local virtual_bg = blend(ui.cursorline, p.base.bg, p.background == 'light' and 0.3 or 0.7)
-	local inlay_hint_fg = blend(text.subtle, text.normal, p.background == 'light' and 0.35 or 0.2)
+	local inlay_hint_fg = blend(text.normal, text.subtle, p.background == 'light' and 0.35 or 0.2)
 	local diagnostic_virtual_fg_mix = p.background == 'light' and 0.28 or 0.12
 	local diagnostic_virtual_bg_mix = p.background == 'light' and 0.2 or 0.35
 	local function diagnostic_virtual(color)
