@@ -211,7 +211,7 @@ local function highlight_groups(p)
 	local virtual_bg = blend(p.base.bg, ui.cursorline, p.background == 'light' and 0.35 or 0.7)
 	local inlay_hint_fg = blend(text.normal, text.subtle, p.background == 'light' and 0.35 or 0.2)
 	local diagnostic_virtual_fg_mix = p.background == 'light' and 0.48 or 0.32
-	local diagnostic_virtual_bg_mix = p.background == 'light' and 0.3 or 0.5
+	local diagnostic_virtual_bg_mix = p.background == 'light' and 0.1 or 0.15
 	local function diagnostic_virtual(color)
 		local fg = blend(color, text.subtle, diagnostic_virtual_fg_mix)
 		return {
